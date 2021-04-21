@@ -1,6 +1,9 @@
 package mobi.task.Fragments
 
 import android.os.Bundle
+import android.transition.Slide
+import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,11 +32,13 @@ class RegisterFragment : Fragment() {
         view.loginpage.setOnClickListener {
             val activity = context as AppCompatActivity
             val myFragment: Fragment = LoginFragment()
+            myFragment.enterTransition = Slide(Gravity.TOP)
+            myFragment.exitTransition = Slide(Gravity.BOTTOM)
             activity.supportFragmentManager.beginTransaction()
                 .replace(R.id.activity_main_layout, myFragment).commit()
         }
 
-        view.loginBtn.setOnClickListener {
+        view.registerbtn.setOnClickListener {
 
             if (view.userid.text.toString().isNullOrEmpty()){
                 view.userid.error="Enter User Id"
@@ -46,10 +51,26 @@ class RegisterFragment : Fragment() {
 
             if (!view.userid.text.toString().isNullOrEmpty() && !view.password.text.toString().isNullOrEmpty()){
 
-                db!!.getlogin()
 
-                db!!.Register( view.userid.text.toString(),view.password.text.toString())
-                Toast.makeText(context, "Registered Successfully", Toast.LENGTH_SHORT).show()
+      //     db!!.Register( view.userid.text.toString(),view.password.text.toString())
+                Log.d("TAG", "onCreateView: ${ db!!.getlogin(view.userid.text.toString())}")
+
+          if ( db!!.getlogin(view.userid.text.toString()).isNullOrEmpty()){
+              db!!.Register( view.userid.text.toString(),view.password.text.toString())
+              Toast.makeText(context, "Registered Successfully", Toast.LENGTH_SHORT).show()
+
+          }else{
+              Toast.makeText(context, "Already Exist Please Login", Toast.LENGTH_SHORT).show()
+          }
+
+                Log.d("TAG", "onCreateView: ${ db!!.getlogin(view.userid.text.toString())}")
+
+
+
+              /*  val activity = context as AppCompatActivity
+                val myFragment: Fragment = RoomBookingFragment()
+                activity.supportFragmentManager.beginTransaction()
+                    .replace(R.id.activity_main_layout, myFragment).commit()*/
             }
 
 

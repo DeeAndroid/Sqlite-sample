@@ -18,16 +18,13 @@
         android:textSize="25sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-       
-        android:text="Register"
-        android:textColor="@color/textcolor"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/loginbg"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -48,7 +45,7 @@
            
             android:gravity="top"
             android:text=" User Name "
-            android:textColor="@color/textcolor"
+            android:textColor="@color/textcolordark"
             android:textSize="16dp"
             android:textStyle="bold"
             />
@@ -105,7 +102,7 @@
            
             android:gravity="top"
             android:text=" Password "
-            android:textColor="@color/textcolor"
+            android:textColor="@color/textcolordark"
             android:textSize="16dp"
             android:textStyle="bold"
             />
@@ -152,7 +149,7 @@
         />
 
     <Button
-        android:id="@+id/loginBtn"
+        android:id="@+id/registerbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -169,7 +166,7 @@
         android:id="@+id/loginpage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
 android:layout_gravity="center"
         android:text="Login"
         android:textColor="@color/textcolor"
