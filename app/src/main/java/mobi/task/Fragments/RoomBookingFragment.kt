@@ -54,17 +54,23 @@ class RoomBookingFragment : Fragment() {
 
         view.addbutton.setOnClickListener {
 
-            if (selecteddate.isNullOrEmpty()) {
-                Toast.makeText(context, "Select Date", Toast.LENGTH_SHORT).show()
-            }
-            if (!selecteddate.isNullOrEmpty()) {
-                if (num!! <= 0) {
-                    num = 1
-                    view.quantity.text = (num.toString())
-                }
 
-                view.addbutton.visibility = View.GONE
-                view.layio.visibility = View.VISIBLE
+            if ((maxroom!!.toInt() - (db!!.checkhotelavailable(selecteddate!!))!!.toInt()) == -10){
+                Toast.makeText(context, "Rooms Not Available", Toast.LENGTH_SHORT).show()
+            }else {
+
+                if (selecteddate.isNullOrEmpty()) {
+                    Toast.makeText(context, "Select Date", Toast.LENGTH_SHORT).show()
+                }
+                if (!selecteddate.isNullOrEmpty()) {
+                    if (num!! <= 0) {
+                        num = 1
+                        view.quantity.text = (num.toString())
+                    }
+
+                    view.addbutton.visibility = View.GONE
+                    view.layio.visibility = View.VISIBLE
+                }
             }
 
         }
@@ -120,7 +126,10 @@ class RoomBookingFragment : Fragment() {
             if (!(num!!.toInt() < 1) && !(selecteddate.isNullOrEmpty())) {
                 db!!.Hotelinsert(userid!!, selecteddate, num!!.toString())
                 Toast.makeText(context!!, "Success", Toast.LENGTH_SHORT).show()
-
+                num=0
+                maxroom=10
+                view.addbutton.visibility=View.VISIBLE
+                view.layio.visibility=View.GONE
                 getdb()
 
             }
