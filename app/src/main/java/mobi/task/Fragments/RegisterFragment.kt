@@ -57,6 +57,7 @@ class RegisterFragment : Fragment() {
                 Log.d("TAG", "onCreateView: ${ db!!.getlogin(view.userid.text.toString())}")
 
           if ( db!!.getlogin(view.userid.text.toString()).isNullOrEmpty()){
+
               db!!.Register( view.userid.text.toString(),view.password.text.toString())
               Toast.makeText(context, "Registered Successfully", Toast.LENGTH_SHORT).show()
               view.userid.text.clear()

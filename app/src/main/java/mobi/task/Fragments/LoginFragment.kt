@@ -24,6 +24,7 @@ class LoginFragment : Fragment() {
     var db: DbHandler? = null
     val sharedPrefFile = "sharedpreference"
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,35 +60,50 @@ class LoginFragment : Fragment() {
 
             if (!view.userid.text.toString().isNullOrEmpty() && !view.password.text.toString().isNullOrEmpty()){
 
+                var userpass=view.password.text.toString()
 
-                if ( db!!.checklogin(view.userid.text.toString(),view.password.text.toString()).isNullOrEmpty()){
+                Log.d("TAG", "onCreateView:checking ${ db!!.checklogin1(view.userid.text.toString())}")
 
-                    Toast.makeText(context, "check Username and Password", Toast.LENGTH_SHORT).show()
+                if (view.password.text.toString()==   db!!.decrypt(db!!.checklogin1(view.userid.text.toString()).toString()) ) {
 
-                }else{
-                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
 
-                    val sharedPreferences: SharedPreferences = this.activity!!.getSharedPreferences(
-                        sharedPrefFile,
-                        Context.MODE_PRIVATE
-                    )
-                    val editor: SharedPreferences.Editor = sharedPreferences.edit()
-                    editor.putString("userid", view.userid.text.toString())
-                    editor.apply()
-                    editor.commit()
 
-                    val activity = context as AppCompatActivity
-                    val myFragment: Fragment = RoomBookingFragment()
-                    myFragment.enterTransition = Slide(Gravity.TOP)
-                    myFragment.exitTransition = Slide(Gravity.BOTTOM)
-                    activity.supportFragmentManager.beginTransaction()
-                        .replace(R.id.activity_main_layout, myFragment).commit()
+                 /*   if (db!!.checklogin(view.userid.text.toString(), view.password.text.toString())
+                            .isNullOrEmpty()
+                    ) {
 
-                    view.userid.text.clear()
-                    view.password.text.clear()
+                        Toast.makeText(context, "check Username and Password", Toast.LENGTH_SHORT)
+                            .show()
 
+                    }
+
+                    else {*/
+                        Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+
+                        val sharedPreferences: SharedPreferences =
+                            this.activity!!.getSharedPreferences(
+                                sharedPrefFile,
+                                Context.MODE_PRIVATE
+                            )
+                        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                        editor.putString("userid", view.userid.text.toString())
+                        editor.apply()
+                        editor.commit()
+
+                        val activity = context as AppCompatActivity
+                        val myFragment: Fragment = RoomBookingFragment()
+                        myFragment.enterTransition = Slide(Gravity.TOP)
+                        myFragment.exitTransition = Slide(Gravity.BOTTOM)
+                        activity.supportFragmentManager.beginTransaction()
+                            .replace(R.id.activity_main_layout, myFragment).commit()
+
+                        view.userid.text.clear()
+                        view.password.text.clear()
+
+                    }
+                else{
+                    Toast.makeText(context!!, "check user name and password", Toast.LENGTH_SHORT).show()
                 }
-
 
 
 
