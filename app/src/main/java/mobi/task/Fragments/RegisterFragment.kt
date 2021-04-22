@@ -52,25 +52,22 @@ class RegisterFragment : Fragment() {
             if (!view.userid.text.toString().isNullOrEmpty() && !view.password.text.toString().isNullOrEmpty()){
 
 
+
       //     db!!.Register( view.userid.text.toString(),view.password.text.toString())
                 Log.d("TAG", "onCreateView: ${ db!!.getlogin(view.userid.text.toString())}")
 
           if ( db!!.getlogin(view.userid.text.toString()).isNullOrEmpty()){
               db!!.Register( view.userid.text.toString(),view.password.text.toString())
               Toast.makeText(context, "Registered Successfully", Toast.LENGTH_SHORT).show()
-
+              view.userid.text.clear()
+              view.password.text.clear()
           }else{
               Toast.makeText(context, "Already Exist Please Login", Toast.LENGTH_SHORT).show()
+              view.userid.text.clear()
+              view.password.text.clear()
           }
 
-                Log.d("TAG", "onCreateView: ${ db!!.getlogin(view.userid.text.toString())}")
 
-
-
-              /*  val activity = context as AppCompatActivity
-                val myFragment: Fragment = RoomBookingFragment()
-                activity.supportFragmentManager.beginTransaction()
-                    .replace(R.id.activity_main_layout, myFragment).commit()*/
             }
 
 

@@ -54,15 +54,15 @@ class RoomBookingFragment : Fragment() {
 
         view.addbutton.setOnClickListener {
 
+            if (selecteddate.isNullOrEmpty()) {
+                Toast.makeText(context, "Select Date", Toast.LENGTH_SHORT).show()
+            }else if (!selecteddate.isNullOrEmpty()) {
 
-            if ((maxroom!!.toInt() - (db!!.checkhotelavailable(selecteddate!!))!!.toInt()) == -10){
-                Toast.makeText(context, "Rooms Not Available", Toast.LENGTH_SHORT).show()
-            }else {
+                if ((maxroom!!.toInt() - (db!!.checkhotelavailable(selecteddate!!))!!.toInt()) == -10) {
+                    Toast.makeText(context, "Rooms Not Available", Toast.LENGTH_SHORT).show()
+                } else {
 
-                if (selecteddate.isNullOrEmpty()) {
-                    Toast.makeText(context, "Select Date", Toast.LENGTH_SHORT).show()
-                }
-                if (!selecteddate.isNullOrEmpty()) {
+
                     if (num!! <= 0) {
                         num = 1
                         view.quantity.text = (num.toString())
@@ -70,6 +70,7 @@ class RoomBookingFragment : Fragment() {
 
                     view.addbutton.visibility = View.GONE
                     view.layio.visibility = View.VISIBLE
+
                 }
             }
 

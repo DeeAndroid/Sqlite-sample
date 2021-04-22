@@ -59,6 +59,7 @@ class LoginFragment : Fragment() {
 
             if (!view.userid.text.toString().isNullOrEmpty() && !view.password.text.toString().isNullOrEmpty()){
 
+
                 if ( db!!.checklogin(view.userid.text.toString(),view.password.text.toString()).isNullOrEmpty()){
 
                     Toast.makeText(context, "check Username and Password", Toast.LENGTH_SHORT).show()
@@ -81,6 +82,10 @@ class LoginFragment : Fragment() {
                     myFragment.exitTransition = Slide(Gravity.BOTTOM)
                     activity.supportFragmentManager.beginTransaction()
                         .replace(R.id.activity_main_layout, myFragment).commit()
+
+                    view.userid.text.clear()
+                    view.password.text.clear()
+
                 }
 
 
