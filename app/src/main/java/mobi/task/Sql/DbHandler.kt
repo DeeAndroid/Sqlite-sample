@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Base64
 import android.util.Log
-import mobi.task.Encription.Encriptor
 import java.security.spec.KeySpec
 import javax.crypto.Cipher
 import javax.crypto.SecretKey
@@ -40,7 +39,6 @@ const val secretKey = "tK5UTui+DPh8lIlBxya5XVsmeDCoUl6vHhdIESMB6sQ="
 const val salt = "QWlGNHNhMTJTQWZ2bGhpV3U=" // base64 decode => AiF4sa12SAfvlhiWu
 const val iv = "bVQzNFNhRkQ1Njc4UUFaWA==" // base64 decode => mT34SaFD5678QAZX
 
-var encription = Encriptor()
 
 class DbHandler(context: Context) : SQLiteOpenHelper(context, DN, null, 1) {
 
