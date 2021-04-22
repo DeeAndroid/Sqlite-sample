@@ -287,6 +287,39 @@
         android:layout_height="1dp"
         android:layout_gravity="bottom"
         android:background="#eaeaea" />
+
+
+    <LinearLayout
+        android:id="@+id/logout"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/rounded_bodergrey"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        >
+        <ImageView
+
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:rotation="-90"
+            android:src="@drawable/logout"
+            app:tint="@color/textcolordark" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+               android:text="Logout"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:textColor="@color/textcolordark"
+            android:textSize="13dp"
+
+            />
+
+    </LinearLayout>
 </LinearLayout>
 
     <Button

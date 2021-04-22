@@ -4,14 +4,18 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.transition.Slide
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_room_booking.view.*
 import mobi.task.R
@@ -166,6 +170,21 @@ class RoomBookingFragment : Fragment() {
             // datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
             datePickerDialog?.show()
             datePickerDialog?.getDatePicker()?.setMinDate(System.currentTimeMillis());
+        }
+
+        view.logout.setOnClickListener {
+
+            val activity = context as AppCompatActivity
+            val myFragment: Fragment = LoginFragment()
+
+            val editor = sharedPreferences.edit()
+            editor.clear()
+            editor.apply()
+            myFragment.enterTransition = Slide(Gravity.TOP)
+            myFragment.exitTransition = Slide(Gravity.BOTTOM)
+            activity.supportFragmentManager.beginTransaction()
+                .replace(R.id.activity_main_layout, myFragment).commit()
+
         }
 
         return view
