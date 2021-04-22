@@ -105,10 +105,6 @@ class LoginFragment : Fragment() {
                     Toast.makeText(context!!, "check user name and password", Toast.LENGTH_SHORT).show()
                 }
 
-
-
-
-
             }
 
 
